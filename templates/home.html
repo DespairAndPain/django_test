@@ -1,0 +1,44 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% include 'links.html' %}
+
+<body>
+  
+  {% include 'navbar.html' %}
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  {% block jumbotron %}
+  {% endblock %}
+  
+  {% block content %}
+  {% endblock %}
+  
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <hr><hr><hr><hr>
+    {% block register %}
+
+    {% endblock %}
+
+    <div class='row'>
+      <div class='col-sm-6 col-sm-offset-3' >
+        <form method='POST' action=''>{% csrf_token %}
+          {{form|crispy}}
+          <input class='btn btn-default' type='submit' value='Submit' />
+        </form>
+      </div>
+    </div>
+    <footer>
+      <p>&copy; 2015 Company, Inc.</p>
+    </footer>
+  </div> <!-- /container -->
+
+
+
+{% include 'footer.html' %}
+  </body>
+  </html>

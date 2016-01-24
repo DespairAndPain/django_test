@@ -1,0 +1,32 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+{% include 'links.html' %}
+
+<body>
+<div class="container">
+	{% include 'navbar.html' %}
+
+
+	{% if queryset %}
+	<h2>Welcome Staff</h2>
+	<table class='table'>
+		{% for instance in queryset %}
+			<tr><td>{{ forloop.counter }}</td><td>{{ instance.email }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr>
+			{% if instance.email == "abc@gmail.edu" %}
+				<tr><td>is equal</td></tr>
+			{% endif %}
+		{% endfor %}
+	</table>
+
+	{% endif %}
+
+
+	{% include 'footer.html' %}
+
+	  </body>
+  </html>
+
+  </div>
