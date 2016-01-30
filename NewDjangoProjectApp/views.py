@@ -30,15 +30,17 @@ def home(request):
 
 def profile(request):
     
+	form = tasks_form(request.POST)
+	instance = form.save(commit=False)
+
 	if request.user.is_authenticated():
 
 		qeury = tasks.objects.all()
-		print(request.POST)
-		if request.POST:
-			form = tasks_form(request.POST)
-			print(request.POST)
-		#tasks_content = form.cleaned_data.get("task")
-		#print(tasks_content)
+		task = form.cleaned_data.get("task")
+		print(len(task))
+
+		if len(request.POST) > 0 and len(task) > 0:
+			instance.save()
 			
 
 		context = {
@@ -51,6 +53,6 @@ def profile(request):
 		context = {
 				'title': "You'r not prepare",
 				'form': form,
-		}
+			}
 
-	return render(request, "profile.html",context)
+	return render(request, "profile.html", context)
