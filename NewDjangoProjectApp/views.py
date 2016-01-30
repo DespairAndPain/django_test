@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import signUpForm
-from .models import signUp
+from .forms import signUpForm, tasks_form
+from .models import signUp,  tasks
 # Create your views here.
 
 def home(request):
@@ -30,15 +30,27 @@ def home(request):
 
 def profile(request):
     
-	if request.user.is_authenticated() and request.user.is_staff:
+	if request.user.is_authenticated():
 
-		qeury = signUp.objects.all();
+		qeury = tasks.objects.all()
+		print(request.POST)
+		if request.POST:
+			form = tasks_form(request.POST)
+			print(request.POST)
+		#tasks_content = form.cleaned_data.get("task")
+		#print(tasks_content)
+			
 
 		context = {
 				"title": "Register now",
-				"queryset": qeury
+				"queryset": qeury,
+				'form': form,
 			}
 
-	
+	else:
+		context = {
+				'title': "You'r not prepare",
+				'form': form,
+		}
 
 	return render(request, "profile.html",context)

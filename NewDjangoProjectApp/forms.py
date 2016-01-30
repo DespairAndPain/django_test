@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import signUp
+from .models import signUp, tasks
 
 class ContactForm(forms.Form):
 	full_name = forms.CharField(required=False)
@@ -24,3 +24,13 @@ class signUpForm(forms.ModelForm):
 	def clean_full_name(self):
 		full_name = self.cleaned_data.get('full_name')
 		return full_name
+
+
+
+class tasks_form(forms.ModelForm):
+
+	class Meta:
+		model = tasks
+		fields = ['task_name','task']
+
+		

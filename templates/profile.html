@@ -6,27 +6,67 @@
 {% include 'links.html' %}
 
 <body>
-<div class="container">
-	{% include 'navbar.html' %}
+	<div class="container cont">
+		{% include 'navbar.html' %}
+		{% if request.user.is_authenticated %}
+		
+		
+		<h2>Welcome {{request.user}}</h2>
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		    <table class='table'>
+    			{% for instance in queryset %}
+    			<tr>
+    				<td>{{ forloop.counter }}</td>
+    				<td>{{ instance.task_name }}</td>
+    				<td>{{ instance.task }}</td>
+    				<td>{{ instance.timestamp }} ago</td>
+    				<td>{{ request.user }}</td>
+    			</tr>
+    			{% endfor %}
+    		</table>	
+		  </div>
+		</div>
+
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			Add task
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Please add you'r task</h4>
+					</div>
+					<div class="modal-body">
+						<div class='row'>
+							<div class='col-sm-6 col-sm-offset-3' >
+								<form method='POST' action=''>{% csrf_token %}
+									{{form|crispy}}
+									<input class='btn btn-default' type='submit' value='Submit' data-dismiss="modal" />
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<footer>
+			<p>&copy; 2015 Company, Inc.</p>
+		</footer>
+		{% else %}
+		<div class="label">{{title}}</div>
+		{% endif %}
+
+		
 
 
-	{% if queryset %}
-	<h2>Welcome Staff</h2>
-	<table class='table'>
-		{% for instance in queryset %}
-			<tr><td>{{ forloop.counter }}</td><td>{{ instance.email }}</td><td>{{ instance.full_name }}</td><td>{{ instance.timestamp|timesince }} ago</td></tr>
-			{% if instance.email == "abc@gmail.edu" %}
-				<tr><td>is equal</td></tr>
-			{% endif %}
-		{% endfor %}
-	</table>
+		{% include 'footer.html' %}
 
-	{% endif %}
+	</body>
+	</html>
 
-
-	{% include 'footer.html' %}
-
-	  </body>
-  </html>
-
-  </div>
+</div>

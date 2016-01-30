@@ -1,3 +1,3 @@
 $ cat .gitignore 
-/static_to_env
-/static_to_project
+static_to_env/
+static_to_project/
