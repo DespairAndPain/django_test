@@ -31,16 +31,14 @@ def home(request):
 def profile(request):
     
 	form = tasks_form(request.POST)
-	instance = form.save(commit=False)
-
 	if request.user.is_authenticated():
 
 		qeury = tasks.objects.all()
-		task = form.cleaned_data.get("task")
-		print(len(task))
+		print(request.POST)
+		#if len(request.POST) > 0:
 
-		if len(request.POST) > 0 and len(task) > 0:
-			instance.save()
+			#instance = form.save(commit=False)
+			#instance.save()
 			
 
 		context = {

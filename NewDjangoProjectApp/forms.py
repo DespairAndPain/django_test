@@ -33,4 +33,14 @@ class tasks_form(forms.ModelForm):
 		model = tasks
 		fields = ['task_name','task']
 
-		
+	def clean_task(self):
+		task = self.cleaned_data.get('task')
+		if len(task) == 0:
+			raise forms.ValidationError("Please write a task")
+		return task
+
+	def clean_task_name(self):
+		task = self.cleaned_data.get('task_name')
+		if len(task) == 0:
+			raise forms.ValidationError("Please write a task name")
+		return task
