@@ -130,15 +130,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_env', 'static_root')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static_in_env', 'static_root')
+STATIC_ROOT = '/home/ub-vir/djangotest/bin/static_in_env/statuc_root/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static_in_project', 'static_for_django_test')
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'static_in_env', 'static_media')
-
+#MEDIA_ROOT =  os.path.join(BASE_DIR, 'static_in_env', 'static_media')
+MEDIA_ROOT = '/home/ub-vir/djangotest/bin/static_in_env/static_media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 

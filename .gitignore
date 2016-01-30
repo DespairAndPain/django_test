@@ -2,4 +2,9 @@ $ cat .gitignore
 static_to_env/
 static_to_project/
 .pyc
-
+.js
+.css
+.map
+.woff
+.svg
+.Python
