@@ -30,15 +30,20 @@ def home(request):
 
 def profile(request):
     
+	if request.method == 'POST':
+		print(request.POST)
+
 	form = tasks_form(request.POST)
 	if request.user.is_authenticated():
 
 		qeury = tasks.objects.all()
-		print(request.POST)
 		#if len(request.POST) > 0:
-
-			#instance = form.save(commit=False)
-			#instance.save()
+		_task = form.cleaned_data.get('task')
+		_task_name = form.cleaned_data.get('task_name')
+		
+		tasks_model = tasks(task_name=_task_name, task=_task,user=request.user)
+		tasks_model.save()
+		
 			
 
 		context = {

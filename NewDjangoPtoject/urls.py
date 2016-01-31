@@ -9,7 +9,7 @@ urlpatterns = [
 	url(r'^$', views.home),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^profile/', views.profile)
+    url(r'^profile/', views.profile, name=u'profile')
 ]
 
 if settings.DEBUG:
